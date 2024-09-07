@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Devine qui c'est ?</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+        />
+    </head>
+    <body>
+        <main class="container">
+            <div class="game">
+                <h2>Guess the login</h2>
+                <div class="img_box">
+                    <img id="img" alt="photo" />
+                </div>
+                <br />
+                <div class="input_box">
+                    <input
+                        type="text"
+                        id="input"
+                        placeholder="Entrez un login"
+                    />
+                </div>
+                <div class="score_box">
+                    <p>Score: <span id="scoreValue">0</span></p>
+                    <button id="pass" class="outline contrast">PASS</button>
+                </div>
+            </div>
+        </main>
+        <script src="app.js"></script>
+        <script>
+            document.addEventListener("contextmenu", (event) =>
+                event.preventDefault(),
+            );
+        </script>
+    </body>
+</html>
