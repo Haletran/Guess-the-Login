@@ -25,17 +25,29 @@
                         placeholder="Entrez un login"
                     />
                 </div>
-                <div class="score_box">
-                    <p>Score: <span id="scoreValue">0</span></p>
-                    <button id="pass" class="outline contrast">PASS</button>
-                </div>
+                <article>
+                    <div class="score_box">
+                        <hgroup>
+                            <p id="score">
+                                Score: <span id="scoreValue">0</span>
+                            </p>
+                            <p id="easter">
+                                Easter-egg: <span id="eastervalue">0</span>
+                            </p>
+                        </hgroup>
+                        <button id="pass" class="outline contrast">SKIP</button>
+                    </div>
+                </article>
+                <p id="copyright">
+                    Made by
+                    <a
+                        href="https://profile.intra.42.fr/users/bapasqui"
+                        class="secondary"
+                        >bapasqui</a
+                    >
+                </p>
             </div>
         </main>
         <script src="app.js"></script>
-        <script>
-            document.addEventListener("contextmenu", (event) =>
-                event.preventDefault(),
-            );
-        </script>
     </body>
 </html>

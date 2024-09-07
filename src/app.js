@@ -12,25 +12,38 @@ function sleep(ms) {
 fetch("db.json")
   .then((response) => response.json())
   .then((data) => {
+    // VARIABLES
     const img = document.getElementById("img");
     const box = document.getElementById("input");
     const pass = document.getElementById("pass");
     const scoreValue = document.getElementById("scoreValue");
-
+    const easteregg = document.getElementById("eastervalue");
     let scoreCounter = 0;
+    let eastereggCounter = 0;
+    let already_found = [];
 
+    // Get a random user from the db and pass it to the box
     function updateRandomUser() {
       const randomIndex = Math.floor(Math.random() * data.length);
       const randomImg = data[randomIndex].image_url_medium;
       const randomLogin = data[randomIndex].login;
 
-      img.src = randomImg;
+      // THANKS copilot for this code
+      // encode the img url in base64
+      fetch(randomImg)
+        .then((response) => response.blob())
+        .then((images) => {
+          var outside = new FileReader();
+          outside.onloadend = function () {
+            img.src = outside.result;
+          };
+          outside.readAsDataURL(images);
+        });
       return randomLogin;
     }
 
     let currentLogin = updateRandomUser();
-    console.log(currentLogin);
-
+    // PASS the current login but lost a point
     pass.addEventListener("click", () => {
       box.setAttribute("aria-invalid", "");
       currentLogin = updateRandomUser();
@@ -39,8 +52,49 @@ fetch("db.json")
         scoreValue.textContent = scoreCounter;
       }
     });
+
+    // EASTER EGG check and alert
+    function check_easteregg(login) {
+      if (login === "bapasqui" && !already_found.includes("bapasqui")) {
+        eastereggCounter++;
+        alert("Oui c'est moi !");
+        already_found.push("bapasqui");
+      } else if (
+        login === "bapasqui2" &&
+        !already_found.includes("bapasqui2")
+      ) {
+        eastereggCounter++;
+        alert("Oui c'est moi aussi !");
+        already_found.push("bapasqui2");
+      } else if (login === "kprigent" && !already_found.includes("kprigent")) {
+        eastereggCounter++;
+        alert("Le Breton est là !");
+        already_found.push("kprigent");
+      } else if (
+        login == "motherlode" &&
+        !already_found.includes("motherlode")
+      ) {
+        eastereggCounter++;
+        scoreCounter = 9999999;
+        scoreValue.textContent = scoreCounter;
+        alert("INFINITE SCORING !");
+        already_found.push("motherlode");
+      } else if (login === "aranger" && !already_found.includes("aranger")) {
+        eastereggCounter++;
+        alert("Le plus raciste !");
+        already_found.push("aranger");
+      } else if (login == "hbelle" && !already_found.includes("hbelle")) {
+        eastereggCounter++;
+        alert("Opti man !");
+        already_found.push("hbelle");
+      }
+      eastervalue.textContent = eastereggCounter;
+    }
+
+    // ENTER the login and check if it's correct
     box.addEventListener("keypress", async (e) => {
       if (e.key === "Enter") {
+        check_easteregg(e.target.value);
         if (e.target.value === currentLogin) {
           scoreCounter++;
           scoreValue.textContent = scoreCounter;
@@ -56,5 +110,5 @@ fetch("db.json")
     });
   })
   .catch((error) => {
-    console.error("Error fetching data:", error);
+    console.error("Error de db", error);
   });
