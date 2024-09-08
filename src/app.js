@@ -1,10 +1,3 @@
-// fetch the db to find img and login
-// rename the link of the image so that you can access the login
-
-// render the image
-// make it correspond to the box to find the user
-
-// SCORING SYSTEM
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -28,7 +21,6 @@ fetch("db.json")
       const randomImg = data[randomIndex].image_url_medium;
       const randomLogin = data[randomIndex].login;
 
-      // THANKS copilot for this code
       // encode the img url in base64
       fetch(randomImg)
         .then((response) => response.blob())
@@ -43,7 +35,8 @@ fetch("db.json")
     }
 
     let currentLogin = updateRandomUser();
-    // PASS the current login but lost a point
+
+    // PASS the current login but lose a point
     pass.addEventListener("click", () => {
       box.setAttribute("aria-invalid", "");
       currentLogin = updateRandomUser();
@@ -66,10 +59,10 @@ fetch("db.json")
         eastereggCounter++;
         alert("Oui c'est moi aussi !");
         already_found.push("bapasqui2");
-      } else if (login === "kprigent" && !already_found.includes("kprigent")) {
+      } else if (login === "breton" && !already_found.includes("breton")) {
         eastereggCounter++;
-        alert("Le Breton est là !");
-        already_found.push("kprigent");
+        alert("Kprigent a spawn !");
+        already_found.push("breton");
       } else if (
         login == "motherlode" &&
         !already_found.includes("motherlode")
@@ -87,8 +80,32 @@ fetch("db.json")
         eastereggCounter++;
         alert("Opti man !");
         already_found.push("hbelle");
+      } else if (login == "qdeviann" && !already_found.includes("qdeviann")) {
+        eastereggCounter++;
+        alert("MATHIEU !!!!!!!!");
+        already_found.push("qdeviann");
+      } else if (login == "doc" && !already_found.includes("doc")) {
+        eastereggCounter++;
+        alert("threads pitié !");
+        already_found.push("doc");
+      } else if (login == "kiroussa" && !already_found.includes("kiroussa")) {
+        eastereggCounter++;
+        alert("Le premier du classement !");
+        already_found.push("kiroussa");
+      } else if (login == "kjacotti" && !already_found.includes("kjacotti")) {
+        eastereggCounter++;
+        img.style.transform = "scaleX(-1)";
+        already_found.push("kjacotti");
+      } else if (login == "ppitzini" && !already_found.includes("ppitzini")) {
+        eastereggCounter++;
+        alert("MelonMussy");
+        already_found.push("ppitzini");
+      } else if (login == "42" && !already_found.includes("42")) {
+        eastereggCounter++;
+        alert("42");
+        already_found.push("42");
       }
-      eastervalue.textContent = eastereggCounter;
+      easteregg.textContent = eastereggCounter;
     }
 
     // ENTER the login and check if it's correct
