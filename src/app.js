@@ -47,6 +47,7 @@ fetch("db.json")
     });
 
     // EASTER EGG check and alert
+    // CHANGE THEM TO YOUR LIKING
     function check_easteregg(login) {
       if (login === "bapasqui" && !already_found.includes("bapasqui")) {
         eastereggCounter++;
