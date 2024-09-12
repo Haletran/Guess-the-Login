@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,18 +8,52 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
         />
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script
+            nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+        ></script>
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <main class="container">
             <div class="box">
                 <div class="header">
-                    <h2>Guess the login<sup>v1.0</sup></h2>
+                    <h2>Guess the login<sup>v1.2</sup></h2>
                     <button id="start" class="outline contrast">Start</button>
+                    <button id="settings" class="contrast">
+                        <ion-icon name="cog-outline"></ion-icon>
+                    </button>
+                </div>
+                <div class="settings_box">
+                    <div class="settings">
+                        <article>
+                            <div class="input_box1">
+                                <label for="db_msg"
+                                    >Choose the guessing DB</label
+                                >
+                                <select id="db">
+                                    <option value="ALL">All users</option>
+                                    <option value="2023">Promo 2023</option>
+                                    <option value="2022">Promo 2022</option>
+                                    <option value="PISCINE">Piscine</option>
+                                </select>
+                            </div>
+                            <button id="save" class="outline contrast">
+                                Save
+                            </button>
+                        </article>
+                    </div>
                 </div>
                 <div class="game">
                     <div class="img_box">
-                        <img id="img" alt="photo" />
+                        <div style="position: relative; display: inline-block">
+                            <img id="img" alt="photo" style="width: 100%" />
+                            <p id="name"></p>
+                        </div>
                     </div>
                     <br />
                     <div class="input_box">
@@ -56,6 +90,7 @@
                 </div>
             </div>
         </main>
-        <script src="app.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/actions.js"></script>
     </body>
 </html>
