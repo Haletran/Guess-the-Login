@@ -2,8 +2,7 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Get wich db to fetch with the cookie
-
+// Get which db to fetch with the cookie
 let url;
 const db = localStorage.getItem("db");
 console.log(db);
@@ -29,17 +28,23 @@ fetch(url)
     const name = document.getElementById("name");
     const scoreValue = document.getElementById("scoreValue");
     const easteregg = document.getElementById("eastervalue");
+    const found_value = document.getElementById("foundValue");
+    const max = document.getElementById("maxfound");
     let scoreCounter = 0;
     let eastereggCounter = 0;
     let easter_found = [];
     let already_found = [];
+    max.textContent = data.length;
+    console.log(data.length);
 
     // Get a random user from the db and pass it to the box
     function updateRandomUser() {
       const randomIndex = Math.floor(Math.random() * data.length);
       const randomImg = data[randomIndex].image_url_medium;
-      const oldLogin = data[randomIndex].login;
       const randomLogin = data[randomIndex].login;
+      if (already_found.includes(randomLogin)) {
+        return updateRandomUser();
+      }
 
       // encode the img url in base64
       fetch(randomImg)
@@ -86,9 +91,9 @@ fetch(url)
         !easter_found.includes("motherlode")
       ) {
         eastereggCounter++;
-        scoreCounter = 9999999;
         alert("INFINITE SCORING !");
         easter_found.push("motherlode");
+        scoreCounter = 9999999;
       } else if (login == "42" && !easter_found.includes("42")) {
         eastereggCounter++;
         alert("42");
@@ -114,6 +119,11 @@ fetch(url)
           box.setAttribute("aria-invalid", "");
           already_found.push(currentLogin);
           currentLogin = updateRandomUser();
+          found_value.textContent++;
+          already_found.push(currentLogin);
+          if (found_value.textContent == max.textContent) {
+            alert("You found all the logins ! GG !");
+          }
         } else {
           box.setAttribute("aria-invalid", "true");
           box.classList.add("shake");
