@@ -94,3 +94,14 @@ sup {
     animation: shake 0.5s;
     animation-iteration-count: infinite;
 }
+
+.info_keys {
+    float: right;
+}
+
+#info_but {
+    outline: none;
+    border: none;
+    width: 0px;
+    cursor: pointer;
+}

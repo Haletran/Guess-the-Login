@@ -32,3 +32,20 @@ document.getElementById("save").addEventListener("click", function () {
     },
   );
 });
+
+document.addEventListener("keydown", async (e) => {
+  if (e.key === "ArrowLeft") {
+    Array.from(document.getElementsByClassName("game")).forEach(
+      function (element) {
+        element.style.display = "none";
+      },
+    );
+    document.getElementById("start").style.display = "";
+    document.getElementById("settings").style.display = "";
+    Array.from(document.getElementsByClassName("settings_box")).forEach(
+      function (element) {
+        element.style.display = "none";
+      },
+    );
+  }
+});

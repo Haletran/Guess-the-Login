@@ -5,7 +5,6 @@ function sleep(ms) {
 // Get which db to fetch with the cookie
 let url;
 const db = localStorage.getItem("db");
-console.log(db);
 if (db == "PISCINE") {
   url = "../db/pool.json";
 } else if (db == "ALL") {
@@ -35,7 +34,6 @@ fetch(url)
     let easter_found = [];
     let already_found = [];
     max.textContent = data.length;
-    console.log(data.length);
 
     // Get a random user from the db and pass it to the box
     function updateRandomUser() {
@@ -76,6 +74,28 @@ fetch(url)
       if (scoreCounter > 0) {
         scoreCounter--;
         scoreValue.textContent = scoreCounter;
+      }
+    });
+
+    document.addEventListener("keydown", async (e) => {
+      if (
+        e.key === "ArrowRight" &&
+        document.getElementById("start").style.display == "none"
+      ) {
+        box.setAttribute("aria-invalid", "");
+        box.value = "";
+        img.style.filter = "blur(5px)";
+        name.style.display = "block";
+        name.textContent = currentLogin;
+        await sleep(350);
+        currentLogin = updateRandomUser();
+        await sleep(50);
+        img.style.filter = "blur(0px)";
+        name.style.display = "none";
+        if (scoreCounter > 0) {
+          scoreCounter--;
+          scoreValue.textContent = scoreCounter;
+        }
       }
     });
 

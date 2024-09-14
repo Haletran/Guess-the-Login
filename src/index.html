@@ -22,7 +22,7 @@
         <main class="container">
             <div class="box">
                 <div class="header">
-                    <h2>Guess the login<sup>v1.2</sup></h2>
+                    <h2>Guess the login<sup>v1.3</sup></h2>
                     <button id="start" class="outline contrast">Start</button>
                     <button id="settings" class="contrast">
                         <ion-icon name="cog-outline"></ion-icon>
@@ -55,7 +55,18 @@
                             <p id="name"></p>
                         </div>
                     </div>
-                    <br />
+                    <button
+                        style="float: right"
+                        class="outline contrast"
+                        id="info_but"
+                        data-tooltip="LEFT arrow => home | RIGHT arrow => skip"
+                        data-placement="right"
+                    >
+                        <ion-icon
+                            class="info_keys"
+                            name="information-circle-outline"
+                        ></ion-icon>
+                    </button>
                     <div class="input_box">
                         <input
                             type="text"
