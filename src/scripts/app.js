@@ -51,9 +51,11 @@ fetch(url)
       const randomImg = data[randomIndex].image_url_medium;
       const randomLogin = data[randomIndex].login;
       if (already_found.includes(randomLogin)) {
-        if (already_found.length > data.length)  
-          return updateRandomUser();
+        if (already_found.length >= data.length)  
+          return null; // No more unique users to choose
+        return updateRandomUser(); // Retry for another user
       }
+
 
       // encode the img url in base64
       fetch(randomImg)
@@ -144,16 +146,20 @@ fetch(url)
       if (e.key === "Enter") {
         check_easteregg(e.target.value);
         if (e.target.value === currentLogin) {
-          scoreCounter++;
-          scoreValue.textContent = scoreCounter;
+          if (!already_found.includes(currentLogin))
+            scoreCounter++;
+            scoreValue.textContent = scoreCounter;
           box.setAttribute("aria-invalid", "false");
           await sleep(150);
           e.target.value = "";
           box.setAttribute("aria-invalid", "");
           already_found.push(currentLogin);
           currentLogin = updateRandomUser();
-          found_value.textContent++;
-          already_found.push(currentLogin);
+          if (!already_found.includes(currentLogin))
+          {            
+            found_value.textContent++;
+            already_found.push(currentLogin);
+          }
           if (found_value.textContent == nb_of_users) {
             img.style.display = "none";
             end_box.style.display = "block";
