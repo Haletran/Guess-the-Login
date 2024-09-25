@@ -50,8 +50,9 @@ fetch(url)
       const randomIndex = Math.floor(Math.random() * data.length);
       const randomImg = data[randomIndex].image_url_medium;
       const randomLogin = data[randomIndex].login;
-      if (already_found.includes(randomLogin) || already_found.length < data.length) {
-        return updateRandomUser();
+      if (already_found.includes(randomLogin)) {
+        if (already_found.length > data.length)  
+          return updateRandomUser();
       }
 
       // encode the img url in base64
