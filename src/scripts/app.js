@@ -29,6 +29,16 @@ fetch(url)
     const easteregg = document.getElementById("eastervalue");
     const found_value = document.getElementById("foundValue");
     const max = document.getElementById("maxfound");
+    const error = document.getElementById("nb_errors");
+    const skip_value = document.getElementById("nb_of_skip");
+    const end_box = document.getElementById("end");
+    const score_box = document.getElementsByClassName("score_box");
+    const info_but = document.getElementById("info_but");
+    const test = document.getElementById("test");
+    const final_score = document.getElementById("final_score");
+    const nb_of_users = data.length;
+    let nb_of_errors = 0
+    let nb_of_skip = 0;
     let scoreCounter = 0;
     let eastereggCounter = 0;
     let easter_found = [];
@@ -40,7 +50,7 @@ fetch(url)
       const randomIndex = Math.floor(Math.random() * data.length);
       const randomImg = data[randomIndex].image_url_medium;
       const randomLogin = data[randomIndex].login;
-      if (already_found.includes(randomLogin)) {
+      if (already_found.includes(randomLogin) && already_found.length < data.length) {
         return updateRandomUser();
       }
 
@@ -75,6 +85,7 @@ fetch(url)
         scoreCounter--;
         scoreValue.textContent = scoreCounter;
       }
+      nb_of_skip++;
     });
 
     document.addEventListener("keydown", async (e) => {
@@ -96,6 +107,7 @@ fetch(url)
           scoreCounter--;
           scoreValue.textContent = scoreCounter;
         }
+        nb_of_skip++;
       }
     });
 
@@ -141,7 +153,19 @@ fetch(url)
           currentLogin = updateRandomUser();
           found_value.textContent++;
           already_found.push(currentLogin);
-          if (found_value.textContent == max.textContent) {
+          if (found_value.textContent == nb_of_users) {
+            img.style.display = "none";
+            end_box.style.display = "block";
+            error.textContent = nb_of_errors;
+            error.style.display = "block";
+            skip_value.textContent = nb_of_skip;
+            skip_value.style.display = "block";
+            final_score.textContent = scoreCounter;
+            box.style.display = "none";
+            for (let i = 0; i < score_box.length; i++)
+              score_box[i].style.display = "none";
+            test.style.display = "none";
+            info_but.style.display = "none";
             alert("You found all the logins ! GG !");
           }
         } else {
@@ -149,6 +173,7 @@ fetch(url)
           box.classList.add("shake");
           setTimeout(() => box.classList.remove("shake"), 300);
           box.value = "";
+          nb_of_errors++;
         }
       }
     });

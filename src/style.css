@@ -105,3 +105,15 @@ sup {
     width: 0px;
     cursor: pointer;
 }
+
+#nb_errors {
+    display: none;
+}
+
+#nb_of_skip {
+    display: none;
+}
+
+#end {
+    display: none;
+}
