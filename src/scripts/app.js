@@ -5,8 +5,8 @@ function sleep(ms) {
 // Get which db to fetch with the cookie
 let url;
 const db = localStorage.getItem("db");
-if (db == "PISCINE") {
-  url = "../db/pool.json";
+if (db == "2024") {
+  url = "../db/2024.json";
 } else if (db == "ALL") {
   url = "../db/all.json";
 } else if (db == "2023") {
